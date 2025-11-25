@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="applocale" content="{{ session('applocale', 'en') }}">
 
-    <link rel="icon" type="image/png" href="{{ asset('storage/assets/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo.png') }}">
 
     @vite('resources/scss/app.scss')
     @vite('resources/js/app.js')
