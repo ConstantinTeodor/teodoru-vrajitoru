@@ -1,0 +1,11 @@
+npm run build
+php artisan export
+
+netlify deploy --prod --dir=dist # go live
+
+npm i -g netlify-cli
+
+netlify login
+netlify init           # create or link a Netlify site (one-time)
+netlify deploy --dir=dist        # preview URL
+

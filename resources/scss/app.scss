@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "fonts";
+@import "variables";
+
+@import "general";
+@import "desktop";
+@import "mobile";
+
+body {
+    font-family: $font-family;
+}
