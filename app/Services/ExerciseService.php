@@ -18,10 +18,11 @@ class ExerciseService
         $search = $filters['search'] ?? null;
         $muscleGroup = $filters['muscle_group'] ?? null;
         $equipmentId = $filters['equipment_id'] ?? null;
+        $includeInactive = filter_var($filters['include_inactive'] ?? false, FILTER_VALIDATE_BOOLEAN);
 
         return Exercise::query()
             ->with(['equipment:id,name,slug'])
-            ->where('is_active', true)
+            ->when(! $includeInactive, fn (Builder $query): Builder => $query->where('is_active', true))
             ->when(filled($search), function (Builder $query) use ($search): void {
                 $query->where(function (Builder $subQuery) use ($search): void {
                     $subQuery

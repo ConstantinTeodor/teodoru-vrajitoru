@@ -21,7 +21,7 @@ class ListExerciseRequest extends FormRequest
             'search' => ['nullable', 'string', 'max:255'],
             'muscle_group' => ['nullable', 'string', 'max:255'],
             'equipment_id' => ['nullable', 'integer', 'exists:equipment,id'],
+            'include_inactive' => ['nullable', 'boolean'],
         ];
     }
 }
-
