@@ -32,6 +32,7 @@ class UpdateWorkoutRequest extends FormRequest
             'exercises.*.sets.*.weight' => ['nullable', 'numeric', 'min:0', 'max:9999.99'],
             'exercises.*.sets.*.weight_unit' => ['required_with:exercises', 'string', 'in:kg,lb'],
             'exercises.*.sets.*.is_warmup' => ['nullable', 'boolean'],
+            'exercises.*.sets.*.is_completed' => ['nullable', 'boolean'],
             'exercises.*.sets.*.rpe' => ['nullable', 'numeric', 'min:1', 'max:10'],
             'exercises.*.sets.*.rest_seconds' => ['nullable', 'integer', 'min:0', 'max:36000'],
             'exercises.*.sets.*.performed_at' => ['nullable', 'date'],

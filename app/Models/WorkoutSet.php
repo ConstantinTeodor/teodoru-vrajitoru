@@ -22,6 +22,7 @@ class WorkoutSet extends Model
         'weight',
         'weight_unit',
         'is_warmup',
+        'is_completed',
         'rpe',
         'rest_seconds',
         'performed_at',
@@ -39,6 +40,7 @@ class WorkoutSet extends Model
             'reps' => 'integer',
             'weight' => 'decimal:2',
             'is_warmup' => 'boolean',
+            'is_completed' => 'boolean',
             'rpe' => 'decimal:1',
             'rest_seconds' => 'integer',
             'performed_at' => 'datetime',
@@ -50,4 +52,3 @@ class WorkoutSet extends Model
         return $this->belongsTo(WorkoutExercise::class);
     }
 }
-

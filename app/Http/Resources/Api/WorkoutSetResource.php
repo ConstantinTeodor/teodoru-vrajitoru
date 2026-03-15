@@ -20,6 +20,7 @@ class WorkoutSetResource extends JsonResource
             'weight' => $this->weight,
             'weight_unit' => $this->weight_unit,
             'is_warmup' => (bool) $this->is_warmup,
+            'is_completed' => (bool) $this->is_completed,
             'rpe' => $this->rpe,
             'rest_seconds' => $this->rest_seconds,
             'performed_at' => $this->performed_at?->toIso8601String(),
@@ -28,4 +29,3 @@ class WorkoutSetResource extends JsonResource
         ];
     }
 }
-

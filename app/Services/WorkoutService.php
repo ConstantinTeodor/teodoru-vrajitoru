@@ -121,6 +121,7 @@ class WorkoutService
                 'weight' => $setEntry['weight'] ?? null,
                 'weight_unit' => $setEntry['weight_unit'],
                 'is_warmup' => (bool) ($setEntry['is_warmup'] ?? false),
+                'is_completed' => (bool) ($setEntry['is_completed'] ?? false),
                 'rpe' => $setEntry['rpe'] ?? null,
                 'rest_seconds' => $setEntry['rest_seconds'] ?? null,
                 'performed_at' => $setEntry['performed_at'] ?? null,
@@ -130,11 +131,13 @@ class WorkoutService
 
     private function loadWorkoutDetails(Workout $workout): Workout
     {
-        return $workout->load([
-            'user:id,name,email',
-            'workoutExercises.exercise:id,name,slug',
-            'workoutExercises.sets',
-        ]);
+        return $workout
+            ->loadCount(['workoutExercises', 'workoutSets'])
+            ->load([
+                'user:id,name,email',
+                'workoutExercises.exercise:id,name,slug',
+                'workoutExercises.sets',
+            ]);
     }
 
     private function assertWorkoutOwnership(User $user, Workout $workout): void
