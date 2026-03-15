@@ -30,6 +30,15 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Account')
                     ->schema([
+                        Forms\Components\FileUpload::make('profile_picture_path')
+                            ->label('Profile Picture')
+                            ->image()
+                            ->avatar()
+                            ->disk('public')
+                            ->directory('avatars')
+                            ->visibility('public')
+                            ->imageEditor()
+                            ->columnSpanFull(),
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->maxLength(255),
@@ -84,6 +93,11 @@ class UserResource extends Resource
         return $table
             ->defaultSort('name')
             ->columns([
+                Tables\Columns\ImageColumn::make('profile_picture_path')
+                    ->label('Avatar')
+                    ->disk('public')
+                    ->circular()
+                    ->defaultImageUrl(fn (User $record): string => 'https://ui-avatars.com/api/?name=' . urlencode($record->name ?? 'User') . '&background=ff2e8b&color=ffffff'),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),

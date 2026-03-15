@@ -19,9 +19,9 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'timezone' => $this->timezone,
             'preferred_weight_unit' => $this->preferred_weight_unit,
+            'profile_picture_url' => $this->profile_picture_url,
             'is_admin' => (bool) $this->is_admin,
             'created_at' => $this->created_at?->toIso8601String(),
         ];
     }
 }
-

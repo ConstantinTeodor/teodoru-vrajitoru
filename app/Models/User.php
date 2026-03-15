@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements FilamentUser
@@ -28,6 +29,7 @@ class User extends Authenticatable implements FilamentUser
         'is_admin',
         'timezone',
         'preferred_weight_unit',
+        'profile_picture_path',
     ];
 
     /**
@@ -57,6 +59,19 @@ class User extends Authenticatable implements FilamentUser
     public function workouts(): HasMany
     {
         return $this->hasMany(Workout::class);
+    }
+
+    public function getProfilePictureUrlAttribute(): ?string
+    {
+        if (! filled($this->profile_picture_path)) {
+            return null;
+        }
+
+        if (str_starts_with($this->profile_picture_path, 'http://') || str_starts_with($this->profile_picture_path, 'https://')) {
+            return $this->profile_picture_path;
+        }
+
+        return Storage::disk('public')->url($this->profile_picture_path);
     }
 
     public function canAccessPanel(Panel $panel): bool
