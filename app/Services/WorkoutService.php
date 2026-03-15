@@ -23,6 +23,10 @@ class WorkoutService
         $until = $filters['until'] ?? null;
 
         return Workout::query()
+            ->with([
+                'workoutExercises.exercise:id,name,slug,muscle_group',
+                'workoutExercises.sets:id,workout_exercise_id,set_number,reps,weight,weight_unit,is_completed',
+            ])
             ->withCount(['workoutExercises', 'workoutSets'])
             ->where('user_id', $user->getKey())
             ->when(filled($from), fn (Builder $query): Builder => $query->whereDate('performed_at', '>=', $from))
@@ -135,7 +139,7 @@ class WorkoutService
             ->loadCount(['workoutExercises', 'workoutSets'])
             ->load([
                 'user:id,name,email',
-                'workoutExercises.exercise:id,name,slug',
+                'workoutExercises.exercise:id,name,slug,muscle_group',
                 'workoutExercises.sets',
             ]);
     }
