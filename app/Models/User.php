@@ -6,6 +6,7 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,6 +60,14 @@ class User extends Authenticatable implements FilamentUser
     public function workouts(): HasMany
     {
         return $this->hasMany(Workout::class);
+    }
+
+    public function hiddenExercises(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Exercise::class,
+            'user_hidden_exercises'
+        )->withTimestamps();
     }
 
     public function getProfilePictureUrlAttribute(): ?string

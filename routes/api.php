@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EquipmentController;
 use App\Http\Controllers\Api\ExerciseController;
+use App\Http\Controllers\Api\SavedExerciseController;
 use App\Http\Controllers\Api\WorkoutController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::middleware('auth:sanctum')->group(function (): void {
     Route::get('equipment', [EquipmentController::class, 'index']);
     Route::get('equipment/{equipment}', [EquipmentController::class, 'show']);
 
+    Route::get('users/me/saved-exercises', [SavedExerciseController::class, 'index']);
+    Route::put('users/me/saved-exercises', [SavedExerciseController::class, 'update']);
+
     Route::apiResource('workouts', WorkoutController::class)->except(['create', 'edit']);
 });
-
