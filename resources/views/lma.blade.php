@@ -259,12 +259,12 @@
     <main class="stage">
         <section class="card" aria-labelledby="birthday-title">
             <div class="crown" aria-hidden="true">👑</div>
-            <p class="eyebrow">🎂 Nivel nou deblocat</p>
-            <h1 id="birthday-title">Hai la multi ani!<span>fratele meu preferat*</span></h1>
+            <p class="eyebrow">🎂 Editie limitata • 1991</p>
+            <h1 id="birthday-title">Hai la multi ani!<span>35 de ani, inca functional</span></h1>
             <p class="message">Sa fii sanatos, norocos si sa ai parte doar de lucruri bune!</p>
             <div class="signature">Te pup <span aria-hidden="true">💋</span></div>
             <button class="button" type="button" id="chaos-button">Apasa pentru extra haos 🎉</button>
-            <p class="fine-print">* esti singurul, dar tot se pune</p>
+            <p class="fine-print">garantia a expirat, farmecul a ramas</p>
         </section>
     </main>
 
